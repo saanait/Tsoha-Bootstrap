@@ -13,7 +13,7 @@
     }
     
     public static function series_list(){
-        View::make('suunnitelmat/series.html');
+        View::make('suunnitelmat/series_list.html');
     }
 
     public static function series_show(){
@@ -27,4 +27,8 @@
     public static function login(){
         View::make('suunnitelmat/login.html');
     }
+    
+    public static function etusivu(){
+        View::make('suunnitelmat/etusivu.html');
+    }    
   }

@@ -8,17 +8,22 @@
     HelloWorldController::sandbox();
   });
   
-$routes->get('/game', function() {
+$routes->get('/series_list', function() {
   HelloWorldController::series_list();
 });
-$routes->get('/game/1', function() {
-  HelloWorldController::series__show();
+
+$routes->get('/series_show', function() {
+  HelloWorldController::series_show();
 });
 
-$routes->get('/game/1', function() {
-  HelloWorldController::series__edit();
+$routes->get('/series_edit', function() {
+  HelloWorldController::series_edit();
 });
 
 $routes->get('/login', function() {
   HelloWorldController::login();
+});
+
+$routes->get('/etusivu', function() {
+  HelloWorldController::etusivu();
 });

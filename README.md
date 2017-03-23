@@ -9,6 +9,7 @@ Yleisiä linkkejä:
 * [Linkki käyttäjän sarjoihin](http://ahlforss.users.cs.helsinki.fi/tsoha/series_list)
 * [Linkki sarjan muokkaukseen](http://ahlforss.users.cs.helsinki.fi/tsoha/series_edit)
 * [Linkki kirjautumiseen](http://ahlforss.users.cs.helsinki.fi/tsoha/login)
+* [Linkki etusivulle](http://ahlforss.users.cs.helsinki.fi/tsoha/etusivu)
 
 ## TV-sarjoja-tietokanta
 

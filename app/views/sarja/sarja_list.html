@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Kaikki sarjat</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Lisää sarja</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Julkaistu</th>
+        <th>Network</th>
+        <th>Kausia</th>
+        <th>Jaksoja</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      {% for sarja in sarjat %}
+      <tr>
+        <td><a href="{{base_path}}/sarja/{{sarja.id}}">{{sarja.nimi}}</td>
+        <td>{{sarja.julkaistu}}</td>
+        <td>{{sarja.network}}</td>
+        <td>{{sarja.kausia}}</td>
+        <td>{{sarja.jaksoja}}</td>
+        <td>
+            {% if sarja.katsottu %}
+                <label class="label label-success">katsottu
+            {% else %}
+                <label class="label label-danger">kesken
+            {% endif %}        
+        </td>    
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/sarja/{{sarja.id}}/edit">Muokkaa</a></td>
+      </tr>
+    {% endfor %}  
+    </tbody>
+  </table>
+{% endblock %}

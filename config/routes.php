@@ -1,23 +1,23 @@
 <?php
 
-  $routes->get('/', function() {
-    HelloWorldController::index();
-  });
+$routes->get('/', function() {
+  HelloWorldController::index();
+});
 
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-  });
+$routes->get('/hiekkalaatikko', function() {
+  HelloWorldController::sandbox();
+});
   
-$routes->get('/series_list', function() {
-  HelloWorldController::series_list();
+$routes->get('/sarja_list', function() {
+  HelloWorldController::sarja_list();
 });
 
-$routes->get('/series_show', function() {
-  HelloWorldController::series_show();
+$routes->get('/sarja_show', function() {
+  HelloWorldController::sarja_show();
 });
 
-$routes->get('/series_edit', function() {
-  HelloWorldController::series_edit();
+$routes->get('/sarja_edit', function() {
+  HelloWorldController::sarja_edit();
 });
 
 $routes->get('/login', function() {
@@ -27,3 +27,12 @@ $routes->get('/login', function() {
 $routes->get('/etusivu', function() {
   HelloWorldController::etusivu();
 });
+
+$routes->get('/sarja/:id', function($id){
+SarjaController::show($id);
+});
+
+$routes->get('/sarja', function(){
+SarjaController::index();
+});
+

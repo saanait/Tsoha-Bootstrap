@@ -5,9 +5,9 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://ahlforss.users.cs.helsinki.fi/tsoha/)
 * [Linkki dokumentaatiooni](https://github.com/saanait/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
-* [Linkki sarjan näkymään](http://ahlforss.users.cs.helsinki.fi/tsoha/series_show)
-* [Linkki käyttäjän sarjoihin](http://ahlforss.users.cs.helsinki.fi/tsoha/series_list)
-* [Linkki sarjan muokkaukseen](http://ahlforss.users.cs.helsinki.fi/tsoha/series_edit)
+* [Linkki sarjan näkymään](http://ahlforss.users.cs.helsinki.fi/tsoha/sarja_show)
+* [Linkki käyttäjän sarjoihin](http://ahlforss.users.cs.helsinki.fi/tsoha/sarjas_list)
+* [Linkki sarjan muokkaukseen](http://ahlforss.users.cs.helsinki.fi/tsoha/sarja_edit)
 * [Linkki kirjautumiseen](http://ahlforss.users.cs.helsinki.fi/tsoha/login)
 * [Linkki etusivulle](http://ahlforss.users.cs.helsinki.fi/tsoha/etusivu)
 

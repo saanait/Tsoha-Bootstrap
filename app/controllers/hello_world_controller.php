@@ -9,19 +9,29 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-        View::make('helloworld.html');
+//        View::make('helloworld.html');
+        $westworld = Sarja::find(1);
+        $sarjat = Sarja::all();
+        $katselijat = Katselija::all();
+        //Kint-luokan dump-metodi tulostaa muuttujan arvon
+        Kint::dump($sarjat);
+        Kint::dump($westworld);
+        Kint::dump($katselijat);
+        
+        
     }
     
-    public static function series_list(){
-        View::make('suunnitelmat/series_list.html');
+    public static function sarja_list(){
+        $sarjat = Sarja::all();
+        View::make('sarja/sarja_list.html', array('sarjat' => $sarjat));
     }
 
-    public static function series_show(){
-        View::make('suunnitelmat/series_show.html');
+    public static function sarja_show(){
+        View::make('sarja/sarja_show.html');
     }
     
-    public static function series_edit(){
-        View::make('suunnitelmat/series_edit.html');
+    public static function sarja_edit(){
+        View::make('sarja/sarja_edit.html');
     }
 
     public static function login(){
@@ -30,5 +40,5 @@
     
     public static function etusivu(){
         View::make('suunnitelmat/etusivu.html');
-    }    
+    }
   }

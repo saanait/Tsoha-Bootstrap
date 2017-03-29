@@ -27,5 +27,5 @@ CREATE TABLE Katselukerta(
     id SERIAL PRIMARY KEY,
     katselija_id INTEGER REFERENCES Katselija(id),
     sarja_id INTEGER REFERENCES Sarja(id),
-    katsottu DATE
+    katsottuPvm DATE
 );

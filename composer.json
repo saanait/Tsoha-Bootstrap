@@ -3,7 +3,11 @@
 		"classmap": [
 			"config/database.php",
 			"lib",
-			"app/controllers"
+			"app/controllers",
+                        "app/models/sarja.php",
+                        "app/models/katselija.php",
+                        "app/models/genre.php",
+                        "app/models/katselukerta.php"
 		]
 	},
 	"require": {

@@ -47,7 +47,6 @@ class Sarja extends BaseModel{
                 'id' => $row['id'],
                 'genre_id' => $row['genre_id'],
                 'nimi' => $row['nimi'],
-                'katsottu' => $row['katsottu'],
                 'kuvaus' => $row['kuvaus'],
                 'jaksoja' => $row['jaksoja'],
                 'kausia' => $row['kausia'],
@@ -58,6 +57,21 @@ class Sarja extends BaseModel{
             return $sarja;
         }
         return null;
+    }
+    
+    public function save(){
+        // Lisätään RETURNING id tietokantakyselymme loppuun, saamme lisätyn rivin id-sarakkeen arvon
+        $query = DB::connection()->prepare('INSERT INTO Sarja (nimi, network, julkaistu, kausia, jaksoja, kuvaus) VALUES (:nimi, :network, :julkaistu, :kausia, :jaksoja, :kuvaus) RETURNING id');
+        // Olion attribuuttiin pääsee synktaksilla $this->attribuutin_nimi
+        $query->execute(array('nimi' => $this->nimi, 'network' => $this->network, 'julkaistu' => $this->julkaistu, 'kausia' => $this->kausia, 'jaksoja' => $this->jaksoja, 'kuvaus' => $this->kuvaus));
+        //  Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
+        $row = $query->fetch();
+        // Asetetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
+        $this->id = $row['id'];
+//        Kint::trace();
+//        Kint::dump($row);
+                
+
     }
     
 }

@@ -17,8 +17,6 @@
         Kint::dump($sarjat);
         Kint::dump($westworld);
         Kint::dump($katselijat);
-        
-        
     }
     
     public static function sarja_list(){

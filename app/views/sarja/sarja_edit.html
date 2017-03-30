@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Muokkaa TV-sarjaa Westworld</h1>
+  <h1>Muokkaa TV-sarjaa {{sarja.nimi}}</h1>
 
   <form>
     <div class="checkbox">
@@ -11,27 +11,27 @@
     </div>
     <div class="form-group">
       <label>Nimi</label>
-      <input class="form-control" value="Westworld" type="text">
+      <input class="form-control" value="{{sarja.nimi}}" type="text">
     </div>
     <div class="form-group">
       <label>Julkaisupäivä</label>
-      <input class="form-control" value="02.10.2016" type="text">
+      <input class="form-control" value="{{sarja.julkaistu}}" type="text">
     </div>
     <div class="form-group">
       <label>Network</label>
-      <input class="form-control" value="HBO" type="text">
+      <input class="form-control" value="{{sarja.network}}" type="text">
     </div>
     <div class="form-group">
       <label>Kausia</label>
-      <input class="form-control" value="1" type="text">
+      <input class="form-control" value="{{sarja.kausia}}" type="text">
     </div>
     <div class="form-group">
       <label>Jaksoja</label>
-      <input class="form-control" value="10" type="text">
+      <input class="form-control" value="{{sarja.jaksoja}}" type="text">
     </div>
     <div class="form-group">
       <label>Kuvaus</label>
-      <textarea class="form-control">        Westworld on yhdysvaltalainen science fiction -televisiosarja, jonka ovat luoneet Jonathan Nolan ja Lisa Joy. Se perustuu Michael Crichtonin ohjaamaan ja käsikirjoittamaan samannimiseen elokuvaan vuodelta 1973. Nolan ja Joy ovat sarjan vastaavia tuottajia yhdessä J. J. Abramsin, Jerry Weintraubin ja Bryan Burkin kanssa. Sarjan ensimmänen jakso esitettiin HBO:lla 2. lokakuuta 2016.
+      <textarea class="form-control">        {{sarja.kuvaus}}
       </textarea>
     </div>
     <div class="form-group">

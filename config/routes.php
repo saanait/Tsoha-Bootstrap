@@ -28,11 +28,29 @@ $routes->get('/etusivu', function() {
   HelloWorldController::etusivu();
 });
 
+$routes->get('/sarja', function(){
+SarjaController::index();
+});
+
+// Sarjan lisääminen tietokantaan
+$routes->post('/sarja', function(){
+    SarjaController::store();
+});
+
+// Sarjan lisäyslomakkeen näyttäminen
+$routes->get('/sarja/new', function(){
+    SarjaController::create();
+});
+
+// Sarjan muokkaussivu
+$routes->get('/sarja/:id/edit', function($id){
+SarjaController::edit($id);
+});
+
+// Sarjan esittelysivu
 $routes->get('/sarja/:id', function($id){
 SarjaController::show($id);
 });
 
-$routes->get('/sarja', function(){
-SarjaController::index();
-});
+
 

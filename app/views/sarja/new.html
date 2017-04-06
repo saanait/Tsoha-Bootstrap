@@ -1,38 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Lisää TV-sarja</h1>
-<p>
-      Täytä kaikki kentät täydellisessä muodossa!
-  </p>
-  <form method="post" action="{{base_path}}/sarja">
+  
+  {% if errors %}
+  <div class="alert alert-danger">
+      <ul>
+          {% for error in errors %}
+          <li>{{error}}</li>
+          {% endfor %}
+      </ul>
+  </div>
+  {% endif %}
+
+  <form method="post" action="{{base_path}}/sarja/">
     <div class="form-group">
       <label>Nimi</label>
-      <input name="nimi" class="form-control" type="text">
+      <input name="nimi" class="form-control" value="{{attributes.nimi}}" type="text">
     </div>
 
     <div class="form-group">
-      <label>Network</label>
-      <input name="network" class="form-control" type="text">
+      <label>Alkuperäinen Network</label>
+      <input name="network" class="form-control" value="{{attributes.network}}" type="text">
     </div>
       
     <div class="form-group">
-      <label>Julkaistu</label>
-      <input name="julkaistu" class="form-control" type="text">
+      <label>Alkuperäinen julkaisupäivämäärä</label>
+      <input name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" type="text">
     </div>  
 
     <div class="form-group">
-      <label>Kausia</label>
-      <input name="kausia" class="form-control" type="text">
+      <label>Kausien lukumäärä</label>
+      <input name="kausia" class="form-control" value="{{attributes.kausia}}" type="text">
     </div>
       
     <div class="form-group">
-      <label>Jaksoja</label>
-      <input name="jaksoja" class="form-control" type="text">
+      <label>Jaksojen lukumäärä</label>
+      <input name="jaksoja" class="form-control" value="{{attributes.jaksoja}}" type="text">
     </div>
 
     <div class="form-group">
       <label>Kuvaus</label>
-      <textarea name="kuvaus" class="form-control"></textarea>
+      <textarea name="kuvaus" class="form-control">{{attributes.kuvaus}}</textarea>
     </div>
 
     <div class="form-group">

@@ -3,7 +3,7 @@
 class Katselija extends BaseModel{
     
     //Attribuutit
-    public $id, $genre_id, $salasana;
+    public $id, $username, $password;
     
     //Konstruktori
     public function __construct($attributes = null) {
@@ -24,8 +24,8 @@ class Katselija extends BaseModel{
             // PHP:n syntaksi alkion lisäämiseksi taulukkoon
             $katselija[] = new Katselija(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi'],
-                'genre_id' => $row['salasana']
+                'username' => $row['username'],
+                'password' => $row['password']
             ));
         } 
         return $katselijat;
@@ -39,8 +39,8 @@ class Katselija extends BaseModel{
         if($row){
             $katselija = new Katselija(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi'],
-                'katsottu' => $row['salasana']
+                'username' => $row['username'],
+                'password' => $row['password']
             ));
             
             return $katselija;
@@ -48,4 +48,22 @@ class Katselija extends BaseModel{
         return null;
     }
     
-}
+    public static function authenticate($username, $password){
+        $query = DB::connection()->prepare('SELECT * FROM Katselija WHERE username = :username AND password = :password LIMIT 1');
+        $query->execute(array('username' => $username, 'password' => $password));
+        $row = $query->fetch();
+        if($row){
+            $katselija = new Katselija(array(
+                'id' => $row['id'],
+                'username' => $row['username'],
+                'password' => $row['password']
+            ));
+          // Käyttäjä löytyi, palautetaan löytynyt käyttäjä oliona
+            return $katselija;
+        }else{
+            // Käyttäjää ei löytynyt, palautetaan null
+            return null;
+        }
+          
+    }
+}    

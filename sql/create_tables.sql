@@ -1,8 +1,8 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 CREATE TABLE Katselija(
     id SERIAL PRIMARY KEY,
-    nimi varchar(50) NOT NULL,
-    salasana varchar(50) NOT NULL
+    username varchar(50) NOT NULL,
+    password varchar(50) NOT NULL
 );
 
 CREATE TABLE Genre(

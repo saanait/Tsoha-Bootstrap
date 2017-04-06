@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+<p>{{message}}</p>
   <h1>{{sarja.nimi}}</h1>
   <!-- Painikkeet tähän -->
   <p>
-    <button class="btn btn-danger">Poista</button> <a class="btn btn-default" href="{{base_path}}/sarja/{{sarja.id}}/edit">Muokkaa</a>
+    <form method="post" action="{{base_path}}/sarja/{{sarja.id}}/destroy" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+    <a class="btn btn-default" href="{{base_path}}/sarja/{{sarja.id}}/edit">Muokkaa</a>
   </p>
   <!-- Tiedot tulee listana tähän -->
   <ul>

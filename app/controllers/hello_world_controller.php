@@ -10,13 +10,24 @@
     public static function sandbox(){
       // Testaa koodiasi täällä
 //        View::make('helloworld.html');
-        $westworld = Sarja::find(1);
-        $sarjat = Sarja::all();
-        $katselijat = Katselija::all();
-        //Kint-luokan dump-metodi tulostaa muuttujan arvon
-        Kint::dump($sarjat);
-        Kint::dump($westworld);
-        Kint::dump($katselijat);
+//        $westworld = Sarja::find(1);
+//        $sarjat = Sarja::all();
+//        $katselijat = Katselija::all();
+//        //Kint-luokan dump-metodi tulostaa muuttujan arvon
+//        Kint::dump($sarjat);
+//        Kint::dump($westworld);
+//        Kint::dump($katselijat);
+//            $doom = new Sarja(array(
+//            'nimi' => '',
+//            'julkaistu' => '1.1.2025',
+//            'network' => 'id',
+//            'kuvaus' => 'd',
+//                'kausia' => 'WOWOW!',
+//                'jaksoja' => 'HJKFD!'
+//          ));
+//          $errors = $doom->errors();
+
+      Kint::dump($errors);
     }
     
     public static function sarja_list(){

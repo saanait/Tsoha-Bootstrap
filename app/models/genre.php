@@ -3,7 +3,7 @@
 class Genre extends BaseModel{
     
     //Attribuutit
-    public $id, $genre_id, $kuvaus;
+    public $id, $nimi, $kuvaus;
     
     //Konstruktori
     public function __construct($attributes = null) {
@@ -22,10 +22,10 @@ class Genre extends BaseModel{
         //Käydään kyselyn tuottamat rivit läpi
         foreach ($rows as $row){
             // PHP:n syntaksi alkion lisäämiseksi taulukkoon
-            $genre[] = new Genre(array(
+            $genret[] = new Genre(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
-                'genre_id' => $row['kuvaus']
+                'kuvaus' => $row['kuvaus']
             ));
         } 
         return $genret;

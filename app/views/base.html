@@ -42,9 +42,26 @@
              <li><a href="/tsoha/sarja_list">Sarjat</a></li>
           </ul>
             
+<!--          Kirjautumisnappi-->
+          {% if user_logged_in %}
+          <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">
+              <button type="submit"  class="btn btn-default">Kirjaudu ulos</button>
+          </form>
+          {% else %}
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/tsoha/login">Kirjaudu sisään</a></li>
-          </ul>  
+          </ul>
+          {% endif %}            
+            
+<!--          Käyttäjänimi näkyvissä kun kirjautunut sisään -->
+          {% if user_logged_in %}
+            <p class="navbar-text navbar-right">Kirjautunut sisään tunnuksella: {{user_logged_in.username}}</p>
+          {% else %}
+<!--            <p class="navbar-text navbar-right">Et ole kirjautunut sisään!</p>-->
+          {% endif %}
+          
+
+          
         </div>
       </div>
     </nav>

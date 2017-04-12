@@ -12,7 +12,7 @@
   </div>
   {% endif %}
 
-  <form method="post" action="{{base_path}}/sarja/">
+  <form method="post" action="{{base_path}}/sarja">
     <div class="form-group">
       <label>Nimi</label>
       <input name="nimi" class="form-control" value="{{attributes.nimi}}" type="text">
@@ -37,7 +37,16 @@
       <label>Jaksojen lukumäärä</label>
       <input name="jaksoja" class="form-control" value="{{attributes.jaksoja}}" type="text">
     </div>
-
+    
+    <div class="form-group">
+        <label>Genre</label>
+        <select class="form-control" name="genret[]" multiple="">
+            {% for genre in genret %}
+              <option value="{{genre.id}}">{{genre.nimi}}</option>
+            {% endfor %}
+        </select>
+    </div>    
+      
     <div class="form-group">
       <label>Kuvaus</label>
       <textarea name="kuvaus" class="form-control">{{attributes.kuvaus}}</textarea>

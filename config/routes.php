@@ -1,6 +1,8 @@
 <?php
 
-
+function check_logged_in() {
+    BaseController::check_logged_in();
+}
 
 $routes->get('/hiekkalaatikko', function() {
   HelloWorldController::sandbox();
@@ -38,22 +40,22 @@ $routes->post('/sarja', function(){
 });
 
 // Sarjan lisäyslomakkeen näyttäminen
-$routes->get('/sarja/new', function(){
+$routes->get('/sarja/new', 'check_logged_in', function(){
     SarjaController::create();
 });
 
 // Sarjan muokkaussivu
-$routes->get('/sarja/:id/edit', function($id){
+$routes->get('/sarja/:id/edit', 'check_logged_in', function($id){
 SarjaController::edit($id);
 });
 
 // Sarjan tietojen muokkaus
-$routes->post('/sarja/:id/edit', function($id){
+$routes->post('/sarja/:id/edit', 'check_logged_in', function($id){
 SarjaController::update($id);
 });
 
 // Sarjan poisto
-$routes->post('/sarja/:id/destroy', function($id){
+$routes->post('/sarja/:id/destroy', 'check_logged_in', function($id){
 SarjaController::destroy($id);
 });
 
@@ -69,5 +71,10 @@ SarjaController::index();
 
 $routes->get('/', function() {
   HelloWorldController::index();
+});
+
+// uloskirjautumisen käsittely
+$routes->post('/logout', function(){
+  UserController::logout();
 });
 

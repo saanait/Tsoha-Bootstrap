@@ -13,7 +13,6 @@ CREATE TABLE Genre(
 
 CREATE TABLE Sarja(
     id SERIAL PRIMARY KEY,
-    genre_id INTEGER REFERENCES Genre(id),
     nimi varchar(50) NOT NULL,
     katsottu boolean DEFAULT FALSE,
     kuvaus varchar(400),
@@ -21,6 +20,12 @@ CREATE TABLE Sarja(
     kausia INTEGER,
     julkaistu DATE,
     network varchar(50)
+);
+
+CREATE TABLE SarjanGenret(
+    id SERIAL PRIMARY KEY,
+    sarja_id INTEGER REFERENCES Sarja(id),
+    genre_id INTEGER REFERENCES Genre(id)
 );
 
 CREATE TABLE Katselukerta(

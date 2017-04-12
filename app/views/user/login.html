@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+<p>{{message}}</p>
+  {% if error %}
+  <div class="alert alert-danger">
+      {{error}}
+     </div>
+  {% endif %}
   <h1>Kirjaudu sisään</h1>
-  <h2>{{message}}</h2>
+
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
   <form method="post" action=""{{base_path}}/login">
     <!-- Tekstikenttä käyttäjätunnukselle -->

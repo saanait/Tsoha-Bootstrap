@@ -3,12 +3,19 @@
 class Sarja extends BaseModel{
     
     //Attribuutit
-    public $id, $genre_id, $nimi, $katsottu, $kuvaus, $jaksoja, $kausia, $julkaistu, $network;
+    public $id, $nimi, $katsottu, $kuvaus, $jaksoja, $kausia, $julkaistu, $network;
     
     //Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi', 'validate_julkaistu', 'validate_network', 'validate_kuvaus', 'validate_jaksoja', 'validate_kausia');
+        $this->validators = array(
+            'validate_nimi', 
+            'validate_julkaistu', 
+            'validate_network', 
+            'validate_kuvaus', 
+            'validate_jaksoja', 
+            'validate_kausia'
+        );
     }
     
     public static function all(){
@@ -25,7 +32,7 @@ class Sarja extends BaseModel{
             // PHP:n syntaksi alkion lisäämiseksi taulukkoon
             $sarjat[] = new Sarja(array(
                 'id' => $row['id'],
-                'genre_id' => $row['genre_id'],
+//                'genre_id' => $row['genre_id'],
                 'nimi' => $row['nimi'],
                 'katsottu' => $row['katsottu'],
                 'kuvaus' => $row['kuvaus'],
@@ -46,7 +53,7 @@ class Sarja extends BaseModel{
         if($row){
             $sarja = new Sarja(array(
                 'id' => $row['id'],
-                'genre_id' => $row['genre_id'],
+//                'genre_id' => $row['genre_id'],
                 'nimi' => $row['nimi'],
                 'kuvaus' => $row['kuvaus'],
                 'jaksoja' => $row['jaksoja'],
@@ -60,11 +67,35 @@ class Sarja extends BaseModel{
         return null;
     }
     
+    public static function genret($sarja_id){
+        $query = DB::connection()->prepare('SELECT genre_id FROM SarjanGenret WHERE sarja_id = :id');
+        $query->execute(array('id' => $sarja_id));
+        $rows = $query->fetch();
+        if($rows){
+            $genret = array();
+            foreach ($rows as $row){
+                
+                // KATSO TÄMÄ!!!!!!
+                $genret[] = $row['genre_id'];
+            }
+            return $genret;
+        }
+        return null;
+    }
+    
     public function save(){
         // Lisätään RETURNING id tietokantakyselymme loppuun, saamme lisätyn rivin id-sarakkeen arvon
         $query = DB::connection()->prepare('INSERT INTO Sarja (nimi, network, julkaistu, kausia, jaksoja, kuvaus) VALUES (:nimi, :network, :julkaistu, :kausia, :jaksoja, :kuvaus) RETURNING id');
         // Olion attribuuttiin pääsee synktaksilla $this->attribuutin_nimi
-        $query->execute(array('nimi' => $this->nimi, 'network' => $this->network, 'julkaistu' => $this->julkaistu, 'kausia' => $this->kausia, 'jaksoja' => $this->jaksoja, 'kuvaus' => $this->kuvaus));
+        $query->execute(array(
+            'nimi' => $this->nimi, 
+            'network' => $this->network, 
+            'julkaistu' => $this->julkaistu, 
+            'kausia' => $this->kausia, 
+            'jaksoja' => $this->jaksoja, 
+            'kuvaus' => $this->kuvaus
+//            'genre' => $this->genre_id
+        ));
         //  Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
         $row = $query->fetch();
         // Asetetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
@@ -93,20 +124,23 @@ class Sarja extends BaseModel{
         if($this->nimi == ' ' || $this->nimi == null) {
             $errors[] = 'Nimi puuttuu.';
         }
-        if(strlen($this->nimi) < 2){
-            $errors[] = 'Nimen pituus tulee olla vähintään kaksi merkkiä.';
-        }
+//        if(strlen($this->nimi) < 2){
+//            $errors[] = 'Nimen pituus tulee olla vähintään kaksi merkkiä.';
+//        }
         
         return $errors;
     }
     
     public function validate_julkaistu() {
+        
         $errors = array();
         if($this->julkaistu == ' ' || $this->julkaistu == null) {
             $errors[] = 'Julkaisuaika puuttuu.';
         }
-        if(strlen($this->julkaistu) < 8){
-            $errors[] = 'Julkaisuajan pitää olla vähintään 10 merkkiä pitkä.';
+        try {
+            $date = new DateTime($this->julkaistu);
+        } catch (Exception $e) {
+             $errors[] = 'Julkaisupäivämäärä virheellinen. Päivämäärän pitää olla muotoa päivä.kuukausi.vuosi';
         }
 //        if(is_numeric($this->julkaistu)== FALSE) {
 //            $errors[] = 'Julkaisuaika virheellinen!';

@@ -16,7 +16,7 @@
     <li><strong>Kausia:</strong> {{sarja.kausia}}</li>
     <li><strong>Jaksoja:</strong> {{sarja.jaksoja}}</li>
     <li><strong>Status:</strong> <label class="label label-danger">kesken</label></li>
-    <li><strong>Genre:</strong> {{sarja.genre}}</li>
+    <li><strong>Genre:</strong> {% for genre in genret%} {{genre.id}} {%endfor%} </li>
   </ul>
   <!-- Kuvaus tulee tähän -->
   <p>

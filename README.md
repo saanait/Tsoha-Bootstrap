@@ -14,3 +14,8 @@ Yleisiä linkkejä:
 ## TV-sarjoja-tietokanta
 
 TV-sarjoja melkein ammatikseen katsovalla asiakkaalla on ongelmia muistaa mitä sarjoja hänellä on kesken ja mitä katsottavana ja mistä palveluista. Järjestelmän tarkoituksena on pitää asiakas paremmin ajantasalla katsottavista sarjoista ja uusista jaksoista.
+
+## Kirjautumistiedot
+
+Käyttäjätunnus: Apina
+Salasana: guest

@@ -19,6 +19,9 @@ class Sarja extends BaseModel{
     }
     
     public static function all(){
+        
+        
+        
         //Alustetaan kysely tietokantayhteydellämme
         $query = DB::connection()->prepare('SELECT * FROM Sarja');
         //Suoritetaan kysely
@@ -75,7 +78,7 @@ class Sarja extends BaseModel{
             $genret = array();
             foreach ($rows as $row){
                 
-                // KATSO TÄMÄ!!!!!!
+                // TÄMÄ KUSEE!!!!!!
                 $genret[] = $row['genre_id'];
             }
             return $genret;

@@ -4,7 +4,8 @@
   <h1>{{sarja.nimi}}</h1>
   <!-- Painikkeet tähän -->
   <p>
-    <form method="post" action="{{base_path}}/sarja/{{sarja.id}}/destroy" style="display: inline-block;">
+    <form method="post" action="{{base_path}}/sarja/{{sarja.id}}/destroy" class="destroy-form" data-confirm="Haluatko varmasti poistaa sarjan?">
+<!--        style="display: inline-block;"-->
         <button type="submit" class="btn btn-danger">Poista</button>
     </form>
     <a class="btn btn-default" href="{{base_path}}/sarja/{{sarja.id}}/edit">Muokkaa</a>

@@ -2,7 +2,8 @@
 
 class SarjaController extends BaseController{
     public static function index(){
-        self::check_logged_in();
+        
+        
         // kaikki sarjat
         $sarjat = Sarja::all();
         View::make('sarja/etusivu.html', array('sarjat' => $sarjat));
@@ -12,7 +13,7 @@ class SarjaController extends BaseController{
         self::check_logged_in();
         $sarja = Sarja::find($id);
         $genret = Sarja::genret($id);
-        Kint::dump($genret);
+//        Kint::dump($genret);
         View::make('sarja/sarja_show.html', array('sarja' => $sarja, 'genret' => $genret));
     }
     
@@ -70,7 +71,7 @@ class SarjaController extends BaseController{
     public static function create(){
         self::check_logged_in();
         $genre = Genre::all();
-        Kint::dump($genre);
+//        Kint::dump($genre);
         View::make('sarja/new.html', array('genret' => $genre));
     }
     

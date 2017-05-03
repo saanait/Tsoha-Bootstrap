@@ -17,13 +17,11 @@ class Sarja extends BaseModel{
             'validate_kausia'
         );
     }
+            
     
     public static function all(){
-        
-        
-        
         //Alustetaan kysely tietokantayhteydellämme
-        $query = DB::connection()->prepare('SELECT * FROM Sarja');
+        $query = DB::connection()->prepare('SELECT * FROM Sarja ORDER BY nimi ASC');
         //Suoritetaan kysely
         $query->execute();
         //Haetaan kyselyn tuottamat rivit
@@ -45,6 +43,7 @@ class Sarja extends BaseModel{
                 'network' => $row['network']
             ));
         } 
+    
         return $sarjat;
     }
     
@@ -71,15 +70,16 @@ class Sarja extends BaseModel{
     }
     
     public static function genret($sarja_id){
-        $query = DB::connection()->prepare('SELECT genre_id FROM SarjanGenret WHERE sarja_id = :id');
+        $query = DB::connection()->prepare('SELECT genre_id, nimi FROM SarjanGenret INNER JOIN Genre g ON (g.id = genre_id) WHERE sarja_id = :id');
         $query->execute(array('id' => $sarja_id));
         $rows = $query->fetch();
         if($rows){
             $genret = array();
             foreach ($rows as $row){
-                
-                // TÄMÄ KUSEE!!!!!!
-                $genret[] = $row['genre_id'];
+                $genret[] = new Genre(array(
+                    'id' => $row['genre_id'],
+                    'nimi' => $row['nimi']
+                ));
             }
             return $genret;
         }
@@ -203,4 +203,6 @@ class Sarja extends BaseModel{
         
         return $errors;
     }    
+    
+    
 }

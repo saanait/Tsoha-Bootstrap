@@ -31,6 +31,8 @@ class SarjaController extends BaseController{
         self::check_logged_in();
         $params = $_POST;
         
+        $genret = $params['genret'];
+        
         $attributes = array(
             'id' => $id,
             'nimi' => $params['nimi'],
@@ -52,6 +54,14 @@ class SarjaController extends BaseController{
             // update-metodin kutsuminen
             $sarja->update();
             
+            foreach($genret as $genre_id){
+            $sarjanGenret = new SarjanGenret(array(
+                'genre_id' => $genre_id,
+                'sarja_id' => $sarja->id
+            ));
+            $sarjanGenret->update();
+        }  
+            
             Redirect::to('/sarja/' . $sarja->id, array('message' => 'Sarjan tiedot muokattu onnistuneesti!'));
         }
     }
@@ -59,6 +69,9 @@ class SarjaController extends BaseController{
     // Pelin poistaminen
     public static function destroy($id){
         self::check_logged_in();
+        
+        // tähän pitää lisätä sarjan genrejen poisto
+        
         // Sarja-olion alustus annetulla id:llä
         $sarja = new Sarja(array('id'=> $id));
         $sarja->destroy();
@@ -77,12 +90,13 @@ class SarjaController extends BaseController{
     
     public static function store(){
         self::check_logged_in();
-        // POST-pyynnön muuttujat sijaistsevat $_POST -nimisessä assosiaatiolistassa
+        // POST-pyynnön muuttujat sijaitsevat $_POST -nimisessä assosiaatiolistassa
         $params = $_POST;
         // Alustetaan uusi Sarja-luokan olion käyttäjän syöttämillä arvoilla
 //        $sarja = new Sarja(array(
         
-        // Otetaan talteen valittujen genrejen id:t
+        
+            // Otetaan talteen valittujen genrejen id:t
         $genret = $params['genret'];
         
         $attributes = array(
@@ -91,35 +105,37 @@ class SarjaController extends BaseController{
             'julkaistu' => $params['julkaistu'],
             'kausia' => $params['kausia'],
             'jaksoja' => $params['jaksoja'],
-            'genret' => array(),
             'kuvaus' => $params['kuvaus']
         );
         
-        foreach($genret as $genre){
-            $attributes['genret'][] = $genre;
-        }
+
+        
+//        Kint::dump($attributes);
         
         $sarja = new Sarja($attributes);
         $errors = $sarja->errors();
         
+        
+        
         if(count($errors) == 0) {
             $sarja->save();
+        foreach($genret as $genre_id){
+            $sarjanGenret = new SarjanGenret(array(
+                'genre_id' => $genre_id,
+                'sarja_id' => $sarja->id
+            ));
+            $sarjanGenret->save();
+        }    
             
             Redirect::to('/sarja/' .$sarja->id, array('message' => 'Tiedot tallennettu onnistuneesti!'));
         } else {
             View::make('sarja/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
         
-        
-        
-        
-//         Kint::dump($params);
+//         Kint::dump($attributes);
         
         // Kutsutaan alustamamme olion save-metodia, joka tallentaa olion tietokantaan
-        
-        
         // Ohjataan käyttäjä lisäyksen jälkeen sarjan esittelysivulle
-        
     }
     
     

@@ -5,6 +5,7 @@
 			"lib",
 			"app/controllers",
                         "app/models/sarja.php",
+                        "app/models/SarjanGenret.php",
                         "app/models/katselija.php",
                         "app/models/genre.php",
                         "app/models/katselukerta.php"

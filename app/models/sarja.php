@@ -55,7 +55,6 @@ class Sarja extends BaseModel{
         if($row){
             $sarja = new Sarja(array(
                 'id' => $row['id'],
-//                'genre_id' => $row['genre_id'],
                 'nimi' => $row['nimi'],
                 'kuvaus' => $row['kuvaus'],
                 'jaksoja' => $row['jaksoja'],
@@ -69,22 +68,7 @@ class Sarja extends BaseModel{
         return null;
     }
     
-    public static function genret($sarja_id){
-        $query = DB::connection()->prepare('SELECT genre_id, nimi FROM SarjanGenret INNER JOIN Genre g ON (g.id = genre_id) WHERE sarja_id = :id');
-        $query->execute(array('id' => $sarja_id));
-        $rows = $query->fetch();
-        if($rows){
-            $genret = array();
-            foreach ($rows as $row){
-                $genret[] = new Genre(array(
-                    'id' => $row['genre_id'],
-                    'nimi' => $row['nimi']
-                ));
-            }
-            return $genret;
-        }
-        return null;
-    }
+
     
     public function save(){
         // Lisätään RETURNING id tietokantakyselymme loppuun, saamme lisätyn rivin id-sarakkeen arvon

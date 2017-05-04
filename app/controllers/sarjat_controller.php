@@ -12,26 +12,39 @@ class SarjaController extends BaseController{
     public static function show($id){
         self::check_logged_in();
         $sarja = Sarja::find($id);
-        $genret = Sarja::genret($id);
+        $genret = Genre::genret($id);
 //        Kint::dump($genret);
         View::make('sarja/sarja_show.html', array('sarja' => $sarja, 'genret' => $genret));
     }
     
+    public static function sarja_list(){
+        $sarjat = Sarja::all();
+        View::make('sarja/sarja_list.html', array('sarjat' => $sarjat));
+    }
 
     
     // lomakkeen esittäminen
     public static function edit($id){
         self::check_logged_in();
         $sarja = Sarja::find($id);
-        View::make('sarja/sarja_edit.html', array('attributes' => $sarja));
+        $kaikkiGenret= Genre::all();
+        
+        View::make('sarja/sarja_edit.html', array('attributes' => $sarja, 'kaikkiGenret' => $kaikkiGenret));
     }
     
     //lomakkeen käsittely
     public static function update($id){
         self::check_logged_in();
+        $genre = Genre::all();
+
+        View::make('sarja/new.html', array('genret' => $genre));
         $params = $_POST;
         
-        $genret = $params['genret'];
+        $genret = array();
+        if (isset($params['genret'])) {
+            $genret = $params['genret'];
+        }
+        
         
         $attributes = array(
             'id' => $id,
@@ -70,10 +83,19 @@ class SarjaController extends BaseController{
     public static function destroy($id){
         self::check_logged_in();
         
-        // tähän pitää lisätä sarjan genrejen poisto
+        // tähän sarjan genrejen poisto
+//        $sarjanGenret = new SarjanGenret(array('sarja_id'=> $id));
+//        $sarjanGenret->destroy();
         
         // Sarja-olion alustus annetulla id:llä
         $sarja = new Sarja(array('id'=> $id));
+        
+//        $genret = array();
+//        $genret = array($genre->SarjanGenret($id));
+//        foreach ($genret as $genre) {
+//            $genre->destroy();
+//        }
+        
         $sarja->destroy();
         
         // Käyttäjä siirretään listaussivulle ilmoituksen kera
@@ -95,9 +117,14 @@ class SarjaController extends BaseController{
         // Alustetaan uusi Sarja-luokan olion käyttäjän syöttämillä arvoilla
 //        $sarja = new Sarja(array(
         
-        
+        $genret = array();
+        if (isset($params['genret'])) {
+            $genret = $params['genret'];
             // Otetaan talteen valittujen genrejen id:t
-        $genret = $params['genret'];
+        }
+        
+            
+        
         
         $attributes = array(
             'nimi' => $params['nimi'],
@@ -133,9 +160,7 @@ class SarjaController extends BaseController{
         }
         
 //         Kint::dump($attributes);
-        
-        // Kutsutaan alustamamme olion save-metodia, joka tallentaa olion tietokantaan
-        // Ohjataan käyttäjä lisäyksen jälkeen sarjan esittelysivulle
+       
     }
     
     

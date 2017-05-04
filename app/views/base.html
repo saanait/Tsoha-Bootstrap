@@ -40,6 +40,7 @@
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
              <li><a href="/tsoha/sarja_list">Sarjat</a></li>
+             <li><a href="/tsoha/genre_list">Genret</a></li>
           </ul>
             
 <!--          Kirjautumisnappi-->
@@ -55,7 +56,7 @@
             
 <!--          Käyttäjänimi näkyvissä kun kirjautunut sisään -->
           {% if user_logged_in %}
-            <p class="navbar-text navbar-right">Kirjautunut sisään tunnuksella: {{user_logged_in.username}}</p>
+            <p class="navbar-text navbar-right">Käyttäjä: {{user_logged_in.username}}</p>
           {% else %}
 <!--            <p class="navbar-text navbar-right">Et ole kirjautunut sisään!</p>-->
           {% endif %}

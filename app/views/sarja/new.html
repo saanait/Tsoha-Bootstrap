@@ -40,7 +40,7 @@
     
     <div class="form-group">
         <label>Genre</label>
-        <select class="form-control" name="genret[]" multiple="">
+        <select class="selectpicker" name="genret[]" multiple>
             {% for genre in genret %}
               <option value="{{genre.id}}">{{genre.nimi}}</option>
             {% endfor %}

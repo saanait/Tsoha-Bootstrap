@@ -17,11 +17,12 @@
     <li><strong>Kausia:</strong> {{sarja.kausia}}</li>
     <li><strong>Jaksoja:</strong> {{sarja.jaksoja}}</li>
     <li><strong>Status:</strong> <label class="label label-danger">kesken</label></li>
-    <li><strong>Genret:</strong> {% for genre in genret%} {{genre.nimi}} {%endfor%} </li>
+    <p>
+    <li><strong>Genret:</strong> {% for genre in genret%} <a class="btn btn-outline-primary" href="{{base_path}}/genre/{{genre.id}}"> {{genre.nimi}} </a> {%endfor%} </li>
   </ul>
   <!-- Kuvaus tulee tähän -->
   <p>
       {{sarja.kuvaus}}
   </p>
   
-  {% endblock %}
+  {% endblock %} 

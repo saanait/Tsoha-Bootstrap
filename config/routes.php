@@ -9,7 +9,7 @@ $routes->get('/hiekkalaatikko', function() {
 });
   
 $routes->get('/sarja_list', function() {
-  HelloWorldController::sarja_list();
+  SarjaController::sarja_list();
 });
 
 $routes->get('/sarja_show', function() {
@@ -78,3 +78,38 @@ $routes->post('/logout', function(){
   UserController::logout();
 });
 
+// genret
+
+$routes->get('/genre_list', function() {
+  GenretController::genre_list();
+});
+
+// Genren lisääminen tietokantaan
+$routes->post('/genre', function(){
+    GenretController::store();
+});
+
+// Genren lisäyslomakkeen näyttäminen
+$routes->get('/genre/new_genre', 'check_logged_in', function(){
+    GenretController::create();
+});
+
+// Genren muokkaussivu
+$routes->get('/genre/:id/edit', 'check_logged_in', function($id){
+    GenretController::edit($id);
+});
+
+// genren tietojen muokkaus
+$routes->post('/genre/:id/edit', 'check_logged_in', function($id){
+    GenretController::update($id);
+});
+
+// genren poisto
+$routes->post('/genre/:id/destroy', 'check_logged_in', function($id){
+    GenretController::destroy($id);
+});
+
+// genren esittelysivu
+$routes->get('/genre/:id', function($id){
+    GenretController::show($id);
+});

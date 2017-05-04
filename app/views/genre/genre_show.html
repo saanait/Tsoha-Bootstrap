@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<p>{{message}}</p>
+  <h1>{{genre.nimi}}</h1>
+  <!-- Painikkeet tähän -->
+  <p>
+    <form method="post" action="{{base_path}}/genre/{{genre.id}}/destroy" class="destroy-form" data-confirm="Haluatko varmasti poistaa genren?">
+<!--        style="display: inline-block;"-->
+        <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+    <a class="btn btn-default" href="{{base_path}}/genre/{{genre.id}}/edit">Muokkaa</a>
+  </p>
+  <!-- Kuvaus tulee tähän -->
+<!--  <p>
+      {{genre.kuvaus}}
+  </p>-->
+  <p>Tähän genreen kuuluvia sarjoja:</p>
+  {% for sarja in sarjat%} <a class="btn btn-outline-primary" href="{{base_path}}/sarja/{{sarja.id}}"> {{sarja.nimi}} </a>{%endfor%}
+ 
+  {% endblock %}

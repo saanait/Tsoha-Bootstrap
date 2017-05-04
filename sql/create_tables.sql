@@ -24,8 +24,8 @@ CREATE TABLE Sarja(
 
 CREATE TABLE SarjanGenret(
     id SERIAL PRIMARY KEY,
-    sarja_id INTEGER REFERENCES Sarja(id),
-    genre_id INTEGER REFERENCES Genre(id)
+    sarja_id INTEGER REFERENCES Sarja(id) ON DELETE CASCADE,
+    genre_id INTEGER REFERENCES Genre(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Katselukerta(

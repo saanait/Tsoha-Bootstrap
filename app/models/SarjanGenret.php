@@ -48,7 +48,7 @@ class SarjanGenret extends BaseModel{
     
     public function destroy(){
         // Lisätään RETURNING id tietokantakyselymme loppuun, saamme lisätyn rivin id-sarakkeen arvon
-        $query = DB::connection()->prepare('DELETE FROM SarjanGenret WHERE id = :id');
+        $query = DB::connection()->prepare('DELETE FROM SarjanGenret WHERE sarja_id = :id');
         $query->execute(array('id' => $this->id));
     }  
     

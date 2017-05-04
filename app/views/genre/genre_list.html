@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if user_logged_in %}
+    
+    <h1>Genret</h1>
+  {% endif %}
+  <p>
+    <a class="btn btn-success" href="{{base_path}}/genre/new_genre" >Lisää genre</a>
+  </p>
+  
+
+
+      <!-- Listataan genret tähän -->
+    <div class="container">
+        <div class="btn-group">
+            {% for genre in genret %}
+                <a class="btn btn-primary" href="{{base_path}}/genre/{{genre.id}}" role="button">{{genre.nimi}}</a>
+            {% endfor %}  
+        </div>
+    </div>
+
+{% endblock %}
